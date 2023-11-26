@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.2",
+        "php": "^8.0.2",
         "dcblogdev/laravel-module-generator": "^1.0",
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "^4.0",
@@ -31,7 +31,10 @@
             "database"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Modules\\": "Modules/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {

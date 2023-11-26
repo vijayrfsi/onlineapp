@@ -1,0 +1,14 @@
+{
+    "name": "Posts",
+    "label": "Posts",
+    "alias": "posts",
+    "description": "manage all posts",
+    "keywords": ["posts"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Posts\\Providers\\PostsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

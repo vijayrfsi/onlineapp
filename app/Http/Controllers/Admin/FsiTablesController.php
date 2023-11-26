@@ -68,9 +68,9 @@ class FsiTablesController extends Controller
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
-        $FsiTable = FsiTable::findOrFail($id);
+        $fsi_table = FsiTable::findOrFail($id);
 
-        return view('admin.fsi_tables.edit', compact('FsiTable'));
+        return view('admin.fsi_tables.edit', compact('fsi_table'));
     }
 
     /**
