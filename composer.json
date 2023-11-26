@@ -6,13 +6,19 @@
     "type": "project",
     "require": {
         "php": "^7.2",
+        "dcblogdev/laravel-module-generator": "^1.0",
+        "doctrine/dbal": "^2.6",
         "fideloper/proxy": "^4.0",
-        "doctrine/dbal": "^2.9",
         "intervention/image": "^2.4",
-        "laravel/framework": "^6.0",
-        "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^6.0",
-        "silber/bouncer": "v1.0.0-rc.6"
+        "kitloong/laravel-migrations-generator": "^6.11",
+        "laracademy/generators": "^3.7",
+        "laravel/framework": "^8.41.0",
+        "laravel/tinker": "*",
+        "laravel/ui": "^3.4",
+        "laravelcollective/html": "*",
+        "naoray/laravel-package-maker": "^4.0",
+        "nwidart/laravel-modules": "^8.3",
+        "silber/bouncer": "*"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
