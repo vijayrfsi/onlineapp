@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string   $name
  * @property DateTime $created_at
  */
-class FsiTables extends Model
+class FsiTable extends Model
 {
     /**
      * The database table used by the model.
@@ -68,7 +68,7 @@ class FsiTables extends Model
      *
      * @var boolean
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     // Scopes...
 
