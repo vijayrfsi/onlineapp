@@ -1,0 +1,14 @@
+{
+    "name": "States",
+    "label": "States",
+    "alias": "states",
+    "description": "manage all states",
+    "keywords": ["states"],
+    "priority": 0,
+    "providers": [
+        "Modules\\States\\Providers\\StatesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

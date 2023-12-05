@@ -55,4 +55,20 @@ class {Module}Controller extends Controller
 
         return redirect(route('app.{module}.index'));
     }
+
+    /**
+     * Delete all selected {Model} at once.
+     *
+     * @param Request $request
+     */
+    public function massDestroy(Request $request)
+    {
+        if (! Gate::allows('users_manage')) {
+            return abort(401);
+        }
+        {Model}::whereIn('id', request('ids'))->delete();
+
+        return response()->noContent();
+    }
+
 }

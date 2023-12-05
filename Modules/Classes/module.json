@@ -1,0 +1,14 @@
+{
+    "name": "Classes",
+    "label": "Classes",
+    "alias": "classes",
+    "description": "manage all classes",
+    "keywords": ["classes"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Classes\\Providers\\ClassesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

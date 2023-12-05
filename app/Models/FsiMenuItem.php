@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int      $id
- * @property int      $fsi_menu_id
- * @property int      $parent_id
- * @property int      $weight
- * @property int      $has_children
- * @property int      $updated_at
- * @property string   $name
- * @property string   $icon_name
- * @property string   $link_text
- * @property DateTime $created_at
+ * @property string $name
+ * @property string $icon_name
+ * @property string $icon_text
+ * @property int    $fsi_menu_id
+ * @property int    $parent_id
+ * @property int    $weight
+ * @property int    $has_children
+ * @property int    $created_at
+ * @property int    $updated_at
  */
 class FsiMenuItem extends Model
 {
@@ -38,7 +37,7 @@ class FsiMenuItem extends Model
      * @var array
      */
     protected $fillable = [
-        'fsi_menu_id', 'parent_id', 'name', 'icon_name', 'link_text', 'weight', 'has_children', 'created_at', 'updated_at'
+        'name', 'fsi_menu_id', 'parent_id', 'icon_name', 'icon_text', 'weight', 'has_children', 'created_at', 'updated_at'
     ];
 
     /**
@@ -56,7 +55,7 @@ class FsiMenuItem extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'int', 'fsi_menu_id' => 'int', 'parent_id' => 'int', 'name' => 'string', 'icon_name' => 'string', 'link_text' => 'string', 'weight' => 'int', 'has_children' => 'int', 'created_at' => 'datetime', 'updated_at' => 'timestamp'
+        'name' => 'string', 'fsi_menu_id' => 'int', 'parent_id' => 'int', 'icon_name' => 'string', 'icon_text' => 'string', 'weight' => 'int', 'has_children' => 'int', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
     ];
 
     /**

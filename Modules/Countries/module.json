@@ -1,0 +1,14 @@
+{
+    "name": "Countries",
+    "label": "Countries",
+    "alias": "countries",
+    "description": "manage all countries",
+    "keywords": ["countries"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Countries\\Providers\\CountriesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

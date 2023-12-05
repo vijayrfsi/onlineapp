@@ -9,4 +9,5 @@ Route::middleware('auth')->prefix('admin/{module}')->group(function() {
     Route::get('edit/{id}', [{Module}Controller::class, 'edit'])->name('app.{module}.edit');
     Route::patch('edit/{id}', [{Module}Controller::class, 'update'])->name('app.{module}.update');
     Route::delete('delete/{id}', [{Module}Controller::class, 'destroy'])->name('app.{module}.delete');
+    Route::delete('{module}/destroy', [{Module}Controller::class,'massDestroy'])->name('{module}.massDestroy');
 });

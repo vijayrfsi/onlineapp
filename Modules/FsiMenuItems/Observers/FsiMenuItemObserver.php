@@ -14,7 +14,7 @@ class FsiMenuItemObserver
      */
     public function created(FsiMenuItem $fsimenuitem)
     {
-        
+ 
     }
 
     /**

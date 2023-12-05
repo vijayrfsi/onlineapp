@@ -1,0 +1,14 @@
+{
+    "name": "CandidateProfiles",
+    "label": "CandidateProfiles",
+    "alias": "candidate_profiles",
+    "description": "manage all candidate_profiles",
+    "keywords": ["candidate_profiles"],
+    "priority": 0,
+    "providers": [
+        "Modules\\CandidateProfiles\\Providers\\CandidateProfilesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

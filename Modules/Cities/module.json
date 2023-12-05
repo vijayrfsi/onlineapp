@@ -1,0 +1,14 @@
+{
+    "name": "Cities",
+    "label": "Cities",
+    "alias": "cities",
+    "description": "manage all cities",
+    "keywords": ["cities"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Cities\\Providers\\CitiesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

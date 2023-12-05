@@ -9,4 +9,5 @@ Route::middleware('auth')->prefix('admin/fsi_menu_items')->group(function() {
     Route::get('edit/{id}', [FsiMenuItemsController::class, 'edit'])->name('app.fsi_menu_items.edit');
     Route::patch('edit/{id}', [FsiMenuItemsController::class, 'update'])->name('app.fsi_menu_items.update');
     Route::delete('delete/{id}', [FsiMenuItemsController::class, 'destroy'])->name('app.fsi_menu_items.delete');
+    Route::delete('fsi_menu_items/destroy', [FsiMenuItemsController::class,'massDestroy'])->name('fsi_menu_items.massDestroy');
 });

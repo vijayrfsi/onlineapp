@@ -1,0 +1,14 @@
+{
+    "name": "Degrees",
+    "label": "Degrees",
+    "alias": "degrees",
+    "description": "manage all degrees",
+    "keywords": ["degrees"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Degrees\\Providers\\DegreesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

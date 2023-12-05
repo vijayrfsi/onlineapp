@@ -55,4 +55,20 @@ class FsiMenuItemsController extends Controller
 
         return redirect(route('app.fsi_menu_items.index'));
     }
+
+    /**
+     * Delete all selected FsiMenuItem at once.
+     *
+     * @param Request $request
+     */
+    public function massDestroy(Request $request)
+    {
+        if (! Gate::allows('users_manage')) {
+            return abort(401);
+        }
+        FsiMenuItem::whereIn('id', request('ids'))->delete();
+
+        return response()->noContent();
+    }
+
 }
