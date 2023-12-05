@@ -1,0 +1,14 @@
+{
+    "name": "Marks",
+    "label": "Marks",
+    "alias": "marks",
+    "description": "manage all marks",
+    "keywords": ["marks"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Marks\\Providers\\MarksServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

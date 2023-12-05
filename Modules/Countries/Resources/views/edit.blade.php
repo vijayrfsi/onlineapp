@@ -14,7 +14,10 @@
                     @csrf
                     @method('patch')
                         <div class="row">
-                            
+                            <div class="form-group col">
+    <label  for="exampleInputEmail1">Name</label>
+    <input class="border form-contorl" name="name" value="{{ old('name', $country->name) }}" />
+</div>
                             <div class="form-group col-md-12">             
                             <button class="btn btn-primary">Submit</button>
                             </div>

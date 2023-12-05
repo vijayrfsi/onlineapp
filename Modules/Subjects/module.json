@@ -1,0 +1,14 @@
+{
+    "name": "Subjects",
+    "label": "Subjects",
+    "alias": "subjects",
+    "description": "manage all subjects",
+    "keywords": ["subjects"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Subjects\\Providers\\SubjectsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

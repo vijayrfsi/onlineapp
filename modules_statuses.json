@@ -3,5 +3,15 @@
     "Fsi_menus": true,
     "Fsi_menu_items": true,
     "FsiMenuItems": true,
-    "FsiMenus": true
+    "FsiMenus": true,
+    "Cities": true,
+    "Countries": true,
+    "Students": true,
+    "Subjects": true,
+    "Marks": true,
+    "Makes": true,
+    "Semesters": true,
+    "Departments": true,
+    "Brands": true,
+    "Districts": true
 }

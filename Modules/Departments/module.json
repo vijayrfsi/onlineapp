@@ -1,0 +1,14 @@
+{
+    "name": "Departments",
+    "label": "Departments",
+    "alias": "departments",
+    "description": "manage all departments",
+    "keywords": ["departments"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Departments\\Providers\\DepartmentsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

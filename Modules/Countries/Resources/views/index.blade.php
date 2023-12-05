@@ -15,20 +15,20 @@
 
                     <table class="table table-striped">
                         <tr>
-                            
+                            <td>Name</td>
                             <td>Action</td>
                         </tr>
                         @if(count($countries))
                         @foreach($countries as $country)
                             <tr>
-                                
+                                <td>{{ $country->name }}</td>
                                 <td>
                                     <a href="{{ route('app.countries.edit', $country->id) }}">Edit</a>
                                 </td>
                             </tr>
                         @endforeach
                         @else
-                        <tr><td colspan="0" class="text-center">No Data Available </td></tr>
+                        <tr><td colspan="1" class="text-center">No Data Available </td></tr>
                         @endif
                     </table>
 
