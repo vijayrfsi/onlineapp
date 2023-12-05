@@ -10,7 +10,7 @@ class {Model} extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['{field_name}'];
     
     protected static function newFactory()
     {

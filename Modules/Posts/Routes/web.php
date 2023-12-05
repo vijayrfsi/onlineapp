@@ -2,7 +2,7 @@
 
 use Modules\Posts\Http\Controllers\PostsController;
 
-Route::middleware('auth')->prefix('app/posts')->group(function() {
+Route::middleware('auth')->prefix('admin/posts')->group(function() {
     Route::get('/', [PostsController::class, 'index'])->name('app.posts.index');
     Route::get('create', [PostsController::class, 'create'])->name('app.posts.create');
     Route::post('create', [PostsController::class, 'store'])->name('app.posts.store');

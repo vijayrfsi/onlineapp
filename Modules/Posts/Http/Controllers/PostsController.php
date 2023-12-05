@@ -26,9 +26,7 @@ class PostsController extends Controller
             'name' => 'required|string'
         ]);
 
-        Post::create([
-            'name' => $request->input('name')
-        ]);
+        Post::create($request->all());
 
         return redirect(route('app.posts.index'));
     }
@@ -46,9 +44,7 @@ class PostsController extends Controller
             'name' => 'required|string'
         ]);
 
-        Post::findOrFail($id)->update([
-            'name' => $request->input('name')
-        ]);
+        Post::findOrFail($id)->update($request->all());
 
         return redirect(route('app.posts.index'));
     }

@@ -1,0 +1,11 @@
+./resources/views/components/admin.blade.php:    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+./resources/views/layouts/admin.blade.php:    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+./storage/framework/views/f31b58f1d239063d383726725a09d1374e321f64.php:    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+./storage/framework/views/7b0b949b5e728251e19d3c3548662da32ba9e8d4.php:    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+./storage/framework/views/7b47fa4d1ddf9b98cb854e71a3715b71ee88f98e.php:    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+./vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForFileWithIgnoredLines/source_with_ignore.php.html:  <script src="_js/popper.min.js" type="text/javascript"></script>
+./vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForBankAccount/BankAccount.php.html:  <script src="_js/popper.min.js" type="text/javascript"></script>
+./vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForClassWithAnonymousFunction/source_with_class_and_anonymous_function.php.html:  <script src="_js/popper.min.js" type="text/javascript"></script>
+./vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/file.html.dist:  <script src="{{path_to_root}}_js/popper.min.js" type="text/javascript"></script>
+./vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/popper.min.js://# sourceMappingURL=popper.min.js.map
+./vendor/phpunit/php-code-coverage/src/Report/Html/Facade.php:        \copy($this->templatePath . 'js/popper.min.js', $dir . 'popper.min.js');

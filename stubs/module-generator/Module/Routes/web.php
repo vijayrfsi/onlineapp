@@ -2,7 +2,7 @@
 
 use Modules\{Module}\Http\Controllers\{Module}Controller;
 
-Route::middleware('auth')->prefix('app/{module}')->group(function() {
+Route::middleware('auth')->prefix('admin/{module}')->group(function() {
     Route::get('/', [{Module}Controller::class, 'index'])->name('app.{module}.index');
     Route::get('create', [{Module}Controller::class, 'create'])->name('app.{module}.create');
     Route::post('create', [{Module}Controller::class, 'store'])->name('app.{module}.store');

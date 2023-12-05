@@ -13,7 +13,7 @@
         "kitloong/laravel-migrations-generator": "^6.11",
         "laracademy/generators": "^3.7",
         "laravel/framework": "^8.41.0",
-        "laravel/tinker": "*",
+        "laravel/tinker": "^2.8",
         "laravel/ui": "^3.4",
         "laravelcollective/html": "*",
         "naoray/laravel-package-maker": "^4.0",

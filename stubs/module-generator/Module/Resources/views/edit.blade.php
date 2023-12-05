@@ -1,7 +1,7 @@
 <x-admin>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit {Model}') }}
+            {{ __('Edit {ModelText}') }}
         </h2>
     </x-slot>
 
@@ -13,9 +13,12 @@
                     <form action="{{ route('app.{module}.update', ${model}->id) }}" method="post">
                     @csrf
                     @method('patch')
-
-                        <input class="border" name="name" value="{{ old('name', ${model}->name) }}" />
-                        <button>{{ __('Submit') }}</button>
+                        <div class="row">
+                            {field_name}
+                            <div class="form-group col-md-12">             
+                            <button class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
                     </form>
 
                 </div>

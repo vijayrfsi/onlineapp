@@ -1,0 +1,1 @@
+            $table->{field_type_id}('{field_name}');

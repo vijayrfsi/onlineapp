@@ -1,3 +1,7 @@
 {
-    "Posts": true
+    "Posts": true,
+    "Fsi_menus": true,
+    "Fsi_menu_items": true,
+    "FsiMenuItems": true,
+    "FsiMenus": true
 }

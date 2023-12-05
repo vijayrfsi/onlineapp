@@ -3,7 +3,8 @@
 namespace Modules\{Module}\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Modules\{Module}\Observers\{Model}Observer;
+use Modules\{Module}\Models\{Model};
 class {Module}ServiceProvider extends ServiceProvider
 {
     protected $moduleName = '{Module}';
@@ -11,6 +12,7 @@ class {Module}ServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        {Model}::observe({Model}Observer::class);
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();

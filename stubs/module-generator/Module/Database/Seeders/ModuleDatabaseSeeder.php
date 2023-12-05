@@ -1,11 +1,12 @@
 <?php
 
-namespace Modules\Posts\Database\Seeders;
+namespace Modules\{Module}\Database\Seeders;
 
+use Modules\{Module}\Models\{Model};
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class PostsDatabaseSeeder extends Seeder
+class {Module}DatabaseSeeder extends Seeder
 {
     public function run()
     {

@@ -13,19 +13,33 @@
 
                     <p><a href="{{ route('app.posts.create') }}">Add Post</a> </p>
 
-                    <table>
+                    <table class="table table-striped">
                         <tr>
-                            <td>Name</td>
+                            <td>Full Name</td>
+                            <td>Email</td>                    
+                            <td>Company Name</td>                    
+                            <td>Enter phone number</td>                    
+                            <td>Message</td>                    
+                            <td>f4c137fa46</td>                    
                             <td>Action</td>
                         </tr>
+                        @if(count($posts))
                         @foreach($posts as $post)
                             <tr>
                                 <td>{{ $post->name }}</td>
+                                <td>{{ $post->email }}</td>
+                                <td>{{ $post->form__company_name }}</td>
+                                <td>{{ $post->f4c137fa44 }}</td>
+                                <td>{{ $post->form_message }}</td>
+                                <td>{{ $post->form_botcheck }}</td>
                                 <td>
                                     <a href="{{ route('app.posts.edit', $post->id) }}">Edit</a>
                                 </td>
                             </tr>
                         @endforeach
+                        @else
+                        <tr><td colspan="6" class="text-center">No Data Available </td></tr>
+                        @endif
                     </table>
 
                 </div>

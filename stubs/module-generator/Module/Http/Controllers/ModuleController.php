@@ -26,9 +26,7 @@ class {Module}Controller extends Controller
             'name' => 'required|string'
         ]);
 
-        {Model}::create([
-            'name' => $request->input('name')
-        ]);
+        {Model}::create($request->all());
 
         return redirect(route('app.{module}.index'));
     }
@@ -46,9 +44,7 @@ class {Module}Controller extends Controller
             'name' => 'required|string'
         ]);
 
-        {Model}::findOrFail($id)->update([
-            'name' => $request->input('name')
-        ]);
+        {Model}::findOrFail($id)->update($request->all());
 
         return redirect(route('app.{module}.index'));
     }

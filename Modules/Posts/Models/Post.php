@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','email','form__company_name','f4c137fa44','form_message','form_botcheck'];
     
     protected static function newFactory()
     {
