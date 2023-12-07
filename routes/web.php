@@ -13,6 +13,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::resource('abilities', 'AbilitiesController');
     Route::resource('fsi_tables', 'FsiTablesController');
     Route::post('fsi_tables/destroy', 'FsiTablesController@massDestroy')->name('fsi_tables.massDestroy');
+    Route::resource('fsi_table_fields', 'FsiTableFieldsController');
+    Route::post('fsi_table_fields/destroy', 'FsiTableFieldsController@massDestroy')->name('fsi_table_fields.massDestroy');
     Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
     Route::resource('roles', 'RolesController');
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
