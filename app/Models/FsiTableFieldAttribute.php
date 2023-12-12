@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int      $weight
  * @property int      $updated_at
  * @property string   $field_type
+ * @property string   $model_type
  * @property DateTime $created_at
  */
 class FsiTableFieldAttribute extends Model
@@ -34,7 +35,7 @@ class FsiTableFieldAttribute extends Model
      * @var array
      */
     protected $fillable = [
-        'fsi_table_field_id', 'field_type', 'weight', 'updated_at', 'created_at'
+        'fsi_table_field_id', 'field_type', 'weight', 'model_type', 'updated_at', 'created_at'
     ];
 
     /**
@@ -52,7 +53,7 @@ class FsiTableFieldAttribute extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'int', 'fsi_table_field_id' => 'int', 'field_type' => 'string', 'weight' => 'int', 'updated_at' => 'timestamp', 'created_at' => 'datetime'
+        'id' => 'int', 'fsi_table_field_id' => 'int', 'field_type' => 'string', 'weight' => 'int', 'model_type' => 'string', 'updated_at' => 'timestamp', 'created_at' => 'datetime'
     ];
 
     /**

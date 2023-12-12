@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string   $field_name
  * @property string   $real_name
  * @property string   $field_display_name
+ * @property string   $backend_display_name
  * @property string   $field_type_id
  * @property string   $field_id
  * @property DateTime $created_at
@@ -39,7 +40,7 @@ class FsiTableField extends Model
      * @var array
      */
     protected $fillable = [
-        'field_name', 'real_name', 'field_display_name', 'fsi_table_id', 'field_type_id', 'field_id', 'weight', 'updated_at', 'user_id', 'created_at'
+        'field_name', 'real_name', 'field_display_name', 'backend_display_name', 'fsi_table_id', 'field_type_id', 'field_id', 'weight', 'updated_at', 'user_id', 'created_at'
     ];
 
     /**
@@ -57,7 +58,7 @@ class FsiTableField extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'int', 'field_name' => 'string', 'real_name' => 'string', 'field_display_name' => 'string', 'fsi_table_id' => 'int', 'field_type_id' => 'string', 'field_id' => 'string', 'weight' => 'int', 'updated_at' => 'timestamp', 'user_id' => 'int', 'created_at' => 'datetime'
+        'id' => 'int', 'field_name' => 'string', 'real_name' => 'string', 'field_display_name' => 'string', 'backend_display_name' => 'string', 'fsi_table_id' => 'int', 'field_type_id' => 'string', 'field_id' => 'string', 'weight' => 'int', 'updated_at' => 'timestamp', 'user_id' => 'int', 'created_at' => 'datetime'
     ];
 
     /**

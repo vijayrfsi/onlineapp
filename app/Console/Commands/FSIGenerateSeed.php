@@ -58,9 +58,11 @@ class FSIGenerateSeed extends Command
         $columnTypes = \DB::select('describe '.$tableName);
         foreach($columnTypes as $columnType){
             if(stristr($columnType->Type, 'int')){
-                if($columnType->Null == "No"){
+                if($columnType->Null == "NO"){
                     if($columnType->Default != ''){
                         $this->columnTypes[$columnType->Field] = $columnType->Default;
+                    } else {
+                        $this->columnTypes[$columnType->Field] = 0;
                     }
                 } else {
                     if($columnType->Default == NULL){
@@ -70,9 +72,11 @@ class FSIGenerateSeed extends Command
                     }
                 }
             } else if(stristr($columnType->Type, 'char')){
-                if($columnType->Null == "No"){
+                if($columnType->Null == "NO"){
                     if($columnType->Default != ''){
                         $this->columnTypes[$columnType->Field] = "'".$columnType->Default."'";
+                    } else {
+                        $this->columnTypes[$columnType->Field] = "''";
                     }
                 } else {
                     if($columnType->Default == NULL){
