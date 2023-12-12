@@ -1,0 +1,1 @@
+        \Bouncer::allow('{RoleName}')->to('{AbilityName}');

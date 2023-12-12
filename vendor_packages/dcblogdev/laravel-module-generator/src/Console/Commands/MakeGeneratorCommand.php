@@ -9,10 +9,15 @@ use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 use Symfony\Component\Finder\Finder;
 use App\Models\FsiTableField;
 use App\Models\FsiTable;
+use App\Models\FsiTableFieldAttribute;
+use App\Models\FsiModelInfo;
+use App\Models\FsiTableDefaultField;
+use Illuminate\Support\Facades\Artisan;
+
 class MakeGeneratorCommand extends Command
 {
     protected       $signature   = 'module:build {name : The name of the module}';
-    protected $tableInfo;
+    protected $tableInfo = ['id' => 0];
     protected       $description = 'Create starter module from a template';
     protected array $caseTypes   = [
         'module' => 'strtolower',
@@ -50,7 +55,11 @@ class MakeGeneratorCommand extends Command
 
         $this->generate();
 
+        Artisan::call('module:enable ' . $this->container['name']);
         $this->info('Starter ' . $this->container['name'] . ' module generated successfully.');
+        Artisan::call('cache:clear');
+        Artisan::call('migrate');
+        echo $output = Artisan::output();
 
         return true;
     }
@@ -69,6 +78,9 @@ class MakeGeneratorCommand extends Command
 
         $this->renameFiles($finder);
         $this->fieldHtml = [];
+        $tables = FsiTable::pluck('name', 'id');
+
+
         $this->fieldsUpdate($finder);
         $this->updateFilesContent($finder);
         //print_r($this->fieldHtml);
@@ -76,6 +88,21 @@ class MakeGeneratorCommand extends Command
         $this->copy($folderPath, './Modules');
         $this->delete('./Modules/Module');
         $this->delete($folderPath);
+
+        FsiModelInfo::where('id', '<>', 0)->delete();
+        foreach($tables as $tid => $tname){
+            $model = ['name' => $tname, 'fsi_table_id' => $tid, 'model_name' => Str::studly(Str::singular($tname)), 'ref_id' => Str::singular($tname)."_id"];
+            $className = '';
+            foreach(glob("Modules/*/Models/". Str::studly(Str::singular($tname)).".php") as $file){
+                $className = $file;
+            }
+            if($className == '')
+            foreach(glob("app/Models/". Str::studly(Str::singular($tname)).".php") as $file){
+                $className = $file;
+            }
+            $model['class_name'] = str_replace('/', '\\', substr($className, 0, -4));
+            FsiModelInfo::create($model);
+        }
     }
 
     public function delete($sourceFile): void
@@ -171,7 +198,7 @@ class MakeGeneratorCommand extends Command
 
     protected function replaceInFile($sourceFile): void
     {
-        if(stristr($sourceFile, 'fields/')){
+        if(stristr($sourceFile, '/fields/')){
             return ;
         }
 
@@ -253,12 +280,11 @@ class MakeGeneratorCommand extends Command
         foreach ($finder as $file) {
             $tableFieldData = [];
             $sourceFile = $file->getPath() . '/' . $file->getFilename();
-            if(stristr($sourceFile, 'fields/')){ 
+            if(stristr($sourceFile, '/fields/') && stristr($sourceFile, '.php')){ 
                 if(stristr($sourceFile, '.blade.php'))          
                     $fieldsFileNameList = explode('-',basename($sourceFile, '.blade.php'));
                 else if(stristr($sourceFile, '.php'))          
                     $fieldsFileNameList = explode('-',basename($sourceFile, '.php'));
-            
                 $fileBaseName = $fieldsFileNameList[0];
                 if(!isset($this->fieldHtml[$fileBaseName])){
                     $this->fieldHtml[$fileBaseName] = [];
@@ -266,7 +292,21 @@ class MakeGeneratorCommand extends Command
                 unset($fieldsFileNameList[0]);
                 $this->fieldHtml[$fileBaseName][implode('-', $fieldsFileNameList)] = []; 
                 $tableFieldData = FsiTableField::where('fsi_table_id', $this->tableInfo['id'])->orderBy('weight', 'asc')->get()->toArray();
+                if(!count($tableFieldData)){
+                    $tableFieldData = FsiTableDefaultField::where('id', '<>', 0)->orderBy('weight', 'asc')->get()->toArray();
+                }
                 foreach($tableFieldData as $fieldData){
+                    $fieldAttriubute = FsiTableFieldAttribute::where('fsi_table_field_id', $fieldData['id'])->pluck('field_type', 'fsi_table_field_id')->toArray();
+                    $fieldModelType = FsiTableFieldAttribute::where('fsi_table_field_id', $fieldData['id'])->pluck('model_type', 'fsi_table_field_id')->toArray();
+                    if(count($fieldAttriubute)){
+                        $fieldTemplate = $fieldAttriubute[$fieldData['id']];
+                        $modelType = $fieldModelType[$fieldData['id']];
+                    } else {
+                        $fieldTemplate = "text";
+                        $modelType = "";
+                    }
+                    $fieldData['template'] = $fieldTemplate;
+                    $fieldData['modelType'] = $modelType;
                     $this->replaceFieldsInFile($sourceFile, $fieldData, $this->fieldHtml[$fileBaseName][implode('-', $fieldsFileNameList)]);
                 }
 

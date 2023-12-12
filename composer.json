@@ -4,6 +4,13 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+
+    "repositories": {
+        "0": { 
+            "type": "path",
+            "url": "/Applications/MAMP/htdocs/vidy/setup/packages/jtinkers/borgcms/"
+        }
+},
     "require": {
         "php": "^8.0.2",
         "dcblogdev/laravel-module-generator": "^1.0",
@@ -12,16 +19,16 @@
         "intervention/image": "^2.4",
         "kitloong/laravel-migrations-generator": "^6.11",
         "laracademy/generators": "^3.7",
-        "laravel/framework": "^8.41.0",
+        "laravel/framework": "^9.19",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^3.4",
         "laravelcollective/html": "*",
-        "naoray/laravel-package-maker": "^4.0",
         "nwidart/laravel-modules": "^8.3",
-        "silber/bouncer": "*"
+        "silber/bouncer": "*",
+        "vijayass/vijay": "@dev"
     },
     "require-dev": {
-        "facade/ignition": "^1.4",
+        "spatie/laravel-ignition": "^1.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "^1.0",
         "phpunit/phpunit": "~8.0"
@@ -60,5 +67,12 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
+    },
+    "extra": {
+        "laravel": {
+            "aliases": {
+                "Vijay": "App\\VijayFacade"
+            }
+        }
     }
 }

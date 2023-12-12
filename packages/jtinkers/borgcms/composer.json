@@ -1,0 +1,41 @@
+{
+    "name": "vijayass/vijay",
+    "description": "A description for vijay.",
+    "type": "package",
+    "license": "MIT",
+    "keywords": [
+        "laravel"
+    ],
+    "authors": [
+        {
+            "name": "rbhh",
+            "email": "ghgh@hghg.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0.2"
+
+    },
+    "autoload":
+    {
+        "psr-4":
+        {
+            "BorgCMS\\": "src/BorgCMS/"
+        }
+    },
+    "extra":
+    {
+        "laravel":
+        {
+            "providers":
+            [
+                "BorgCMS\\FluidSchema\\FluidSchemaServiceProvider"
+            ],
+            "aliases":
+            {
+                "FluidSchema": "BorgCMS\\FluidSchema\\FluidSchemaFacade"
+            }
+        }
+    }
+
+}
