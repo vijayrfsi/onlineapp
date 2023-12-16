@@ -1,16 +1,22 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
-
     "repositories": {
-        "0": { 
+        "0": {
             "type": "path",
             "url": "/Applications/MAMP/htdocs/vidy/setup/packages/jtinkers/borgcms/"
+        },
+        "vijay": {
+            "type": "path",
+            "url": "packages/vijay"
         }
-},
+    },
     "require": {
         "php": "^8.0.2",
         "dcblogdev/laravel-module-generator": "^1.0",
@@ -25,7 +31,7 @@
         "laravelcollective/html": "*",
         "nwidart/laravel-modules": "^8.3",
         "silber/bouncer": "*",
-        "vijayass/vijay": "@dev"
+        "vijayass/vijay": "dev-main"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^1.0",

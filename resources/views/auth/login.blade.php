@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.customer')
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-8">

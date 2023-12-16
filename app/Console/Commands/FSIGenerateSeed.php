@@ -6,6 +6,7 @@ use App\User;
 use App\Models\FsiTable;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Artisan;
 
 class FSIGenerateSeed extends Command
 {
@@ -47,7 +48,9 @@ class FSIGenerateSeed extends Command
                 $result = (array) $result;
                 foreach($result as $tableName){
                     if($tableName !="migrations"){
-                        $this->getGenerateSeed($collection, $iname);
+                        $collection = \DB::table($tableName)->get();
+
+                        $this->getGenerateSeed($collection, $tableName);
                     }
                 }
             }
@@ -87,6 +90,8 @@ class FSIGenerateSeed extends Command
                 }
             } else if(stristr($columnType->Type, 'json')){
                 $this->columnTypes[$columnType->Field] = 'NULL';
+            } else if(stristr($columnType->Type, 'datetime') || stristr($columnType->Type, 'timestamp')){
+                $this->columnTypes[$columnType->Field] = "'".date('Y-m-d h:i:s')."'";
             } else {
                 $this->columnTypes[$columnType->Field] = "''";
             }
@@ -116,12 +121,42 @@ class FSIGenerateSeed extends Command
             $model_name = Str::studly(Str::singular($tableName));
         }
         $this->getColumnInfos($tableName);
-        $model_path = "App\\Models\\".$model_name;
+        $model_paths = (glob("modules/*/Models/$model_name.php"));
+        $models = ['', 'abilities', 'assigned_roles', 'permissions', 'password_resets', 'users', 'roles'];
+        if(in_array($tableName, $models)){
+            return ;
+        }
+        if( count($model_paths)){
+            $model_path = "Modules\\".Str::plural($model_name)."\\Models\\".$model_name;
+        } else {
+            $model_paths = (glob("app/Models/$model_name.php"));
+            if( count($model_paths)){
+                $model_path = "App\\Models\\".$model_name;
+            }
+            else {
+                $model_paths = (glob("app/$model_name.php"));
+                if( count($model_paths)){
+                    $model_path = "App\\".$model_name;
+                } else {
+                    Artisan::call('generate:modelfromtable', [
+                        '--table' => $tableName]);
+
+                }
+                $model_paths = (glob("app/Models/$model_name.php"));
+                if( count($model_paths)){
+                    $model_path = "App\\Models\\".$model_name;
+                }
+            }
+            
+        }
+        
         $content = '';
         $rowContent = '';
         $modelData = '';
         $chunks = $collection->chunk(10);
-
+        if(!isset($model_path)){
+            return;
+        }
         $listFile = $this->getStubFiles($tableName);
         $templateFile = '';
         if(count($listFile)){
@@ -255,7 +290,7 @@ class FSIGenerateSeed extends Command
 
     public function getStub($tableName)
     {
-        $this->doComment('creating seeder stub');
+        $this->doComment('creating seeder stub for table '.$tableName);
 
          if(file_exists(base_path().'/stubs/migrate-seeder-generators/seeders/'.$tableName.'/ModelSeed.php')){
             return base_path().'/stubs/migrate-seeder-generators/seeders/'.$tableName.'/ModelSeed.php';
@@ -289,3 +324,5 @@ class FSIGenerateSeed extends Command
         return false;
     }
 }
+
+//insert into fsi_table_fields SELECT null, COLUMN_NAME, COLUMN_NAME, COLUMN_NAME, COLUMN_NAME, b.id, if(DATA_TYPE REGEXP 'json', 'string', if(DATA_TYPE REGEXP 'int', 'integer', 'string')), 0, 0, now(), 1, now() FROM information_schema.columns a, fsi_setup.fsi_tables b WHERE TABLE_SCHEMA = 'fsi_setup' and b.name = a.table_name and b.id not in (select fsi_table_id from fsi_table_fields);

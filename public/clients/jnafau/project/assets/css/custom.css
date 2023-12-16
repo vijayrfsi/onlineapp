@@ -1,0 +1,90 @@
+/* authentication css */
+.page-wrapper.authentication {
+      margin-left: 0 !important;
+      padding-top: 0 !important;
+   }
+input#whatsap,input#email {
+    margin-left: 8px;
+    margin-top: 3px;
+}
+
+
+   .authentication>.content{
+      padding:0;
+   }
+   .auth_row {
+    height: 100vh;
+    background: white;
+}
+
+.card {
+      padding: 8px 29px;
+}
+
+.login_right {
+/*      width:60%;*/
+      margin:3rem auto;
+}
+.login_form label,.login_form1 label {
+      margin-bottom: 7px;
+}
+.login_btn button {
+      width:150px;
+}
+.links a {
+    text-decoration: none;
+    margin-top: 11px;
+    display: block;
+    text-align: center;
+    color: #311b92;
+}
+
+.login_form .absolute,.login_form1 .absolute {
+    margin-bottom: 7px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 26px;
+    color: white;
+    background: #FF6341;
+    width: 38px;
+    text-align: center;
+    height: 43px;
+}
+.password_absolute {
+   margin-bottom: 7px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 26px;
+    color: white;
+    background: #FF6341;
+    width: 38px;
+    text-align: center;
+    height: 43px; 
+}
+form.login_form input,form.login_form1 input {
+    padding-left: 46px;
+}
+form.login_form .form-group,form.login_form1 .form-group {
+    position: relative;
+}
+.auth_row {
+      display: flex;
+      justify-content: center;
+      background:#ededed;
+      align-items: center;
+      padding:34px;
+}
+.form-group.chckbox {
+    text-align: left;
+    margin-left: 6px;
+}
+@media (max-width:600px){
+    .auth_row {
+        padding:0;
+    }
+    .auth_row .card {
+    padding: 8px 2px;
+}
+}
