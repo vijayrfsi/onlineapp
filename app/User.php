@@ -5,6 +5,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Hash;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class User
@@ -17,8 +19,8 @@ use Hash;
 */
 class User extends Authenticatable
 {
-    use Notifiable;
-    use HasRolesAndAbilities;
+    use Notifiable, HasFactory;
+    use HasRolesAndAbilities, HasApiTokens;
 
     protected $fillable = ['name', 'email', 'password', 'remember_token'];
     

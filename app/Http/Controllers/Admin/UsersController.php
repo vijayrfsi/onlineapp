@@ -9,9 +9,17 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUsersRequest;
 use App\Http\Requests\Admin\UpdateUsersRequest;
+use App\Repository\UserRepositoryInterface;
 
 class UsersController extends Controller
 {
+    private $userRepository;
+
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Display a listing of User.
      *
@@ -23,7 +31,7 @@ class UsersController extends Controller
             return abort(401);
         }
 
-        $users = User::with('roles')->get();
+        $users = $this->userRepository->all();
 
         return view('admin.users.index', compact('users'));
     }
@@ -54,7 +62,7 @@ class UsersController extends Controller
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
-        $user = User::create($request->all());
+        $user = $this->userRepository->create($request->all());
 
         foreach ($request->input('roles') as $role) {
             $user->assign($role);
@@ -77,7 +85,7 @@ class UsersController extends Controller
         }
         $roles = Role::get()->pluck('name', 'name');
 
-        $user = User::findOrFail($id);
+        $user = $this->userRepository->findById($id);
 
         return view('admin.users.edit', compact('user', 'roles'));
     }
@@ -106,14 +114,12 @@ class UsersController extends Controller
         return redirect()->route('admin.users.index');
     }
 
-    public function show(User $user)
+    public function show($id)
     {
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
-
-        $user->load('roles');
-
+        $user = $this->userRepository->findById($id);
         return view('admin.users.show', compact('user'));
     }
 
@@ -128,7 +134,7 @@ class UsersController extends Controller
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
-        $user = User::findOrFail($id);
+        $user = $this->userRepository->findById($id);
         $user->delete();
 
         return redirect()->route('admin.users.index');
@@ -144,8 +150,7 @@ class UsersController extends Controller
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
-        User::whereIn('id', request('ids'))->delete();
-
+        $this->userRepository->deleteMultipleIds('id', request('ids'));
         return response()->noContent();
     }
 
