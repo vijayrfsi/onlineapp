@@ -122,7 +122,7 @@ class FSIGenerateSeed extends Command
         }
         $this->getColumnInfos($tableName);
         $model_paths = (glob("modules/*/Models/$model_name.php"));
-        $models = ['', 'abilities', 'assigned_roles', 'permissions', 'password_resets', 'users', 'roles'];
+        $models = ['', 'abilities', 'assigned_roles', 'permissions', 'password_resets'];
         if(in_array($tableName, $models)){
             return ;
         }
@@ -134,10 +134,12 @@ class FSIGenerateSeed extends Command
                 $model_path = "App\\Models\\".$model_name;
             }
             else {
+                $iname = $this->input->getArgument('name');
+
                 $model_paths = (glob("app/$model_name.php"));
                 if( count($model_paths)){
                     $model_path = "App\\".$model_name;
-                } else {
+                } else if($iname != "roles" && $iname != "users") {
                     Artisan::call('generate:modelfromtable', [
                         '--table' => $tableName]);
 
@@ -154,6 +156,7 @@ class FSIGenerateSeed extends Command
         $rowContent = '';
         $modelData = '';
         $chunks = $collection->chunk(10);
+        $uniqueAbilities = [];
         if(!isset($model_path)){
             return;
         }
@@ -196,9 +199,14 @@ class FSIGenerateSeed extends Command
                     $roleAbilities[$permission->entity_id] = [$permission->ability_id];
                 else 
                 $roleAbilities[$permission->entity_id][] = $permission->ability_id;
+                $uniqueAbilities[$permission->ability_id] = $permission->ability_id;
             }
             $listArray = [];
             $inc = 0;
+            $allAbilities = [];
+            foreach($abilitiesCollection as $ability){
+                $allAbilities[$ability->id] = $ability->id;
+            }
             foreach($chunks->toArray() as $allRows){
                 $rowData = [];
                 foreach($allRows as $rowObj){
@@ -207,8 +215,11 @@ class FSIGenerateSeed extends Command
                     foreach($row as $column_name => $column_value){
                         $replacements['{'.Str::studly(Str::singular("roles")).ucwords($column_name).'}'] = $column_value;
                     }
-                    
-                    
+                    if($row['id'] == 1){
+                        foreach(array_diff($allAbilities, $uniqueAbilities) as $missedAbility){
+                            $roleAbilities[$row['id']][] = $missedAbility;
+                        }
+                    }
                     foreach($abilitiesCollection as $ability){
                         if(array_key_exists($row['id'], $roleAbilities)){
                             if(in_array($ability->id, $roleAbilities[$row['id']])){
@@ -226,9 +237,8 @@ class FSIGenerateSeed extends Command
                                     $pageContent
                                 );
                                 $listArray[] = $pageContent;
-                            }
+                            } 
                         }
-                        
                     }
                 }
             }
