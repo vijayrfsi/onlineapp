@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'Permissions Bouncer',
+    'site_title' => 'BMRQ Potral',
 ];

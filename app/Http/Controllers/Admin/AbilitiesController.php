@@ -51,7 +51,16 @@ class AbilitiesController extends Controller
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
+        $extra_abilities = ['create', 'update', 'index', 'destory', 'delete'];
         Ability::create($request->all());
+        $abilitiesList = ['own_'.$request->input('name')];
+        foreach($extra_abilities as $ability){
+            $abilitiesList[] = $request->input('name').'_'.$ability;
+            $abilitiesList[] = 'own_'.$request->input('name').'_'.$ability;
+        }
+        foreach($abilitiesList as $ability){
+            Ability::create(['name'=>$ability]);
+        }
 
         return redirect()->route('admin.abilities.index');
     }

@@ -2,5 +2,6 @@
     "Degs": true,
     "Fsitable": true,
     "Fsitablefields": true,
-    "TableFields": true
+    "TableFields": true,
+    "FsiTesting": true
 }
